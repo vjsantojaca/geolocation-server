@@ -12,6 +12,9 @@ public class GeolocationResponse {
 	
 	@NotNull
 	private long longitude;
+	
+	@NotNull
+	private long date;
 
 	public int getId() {
 		return id;
@@ -36,4 +39,12 @@ public class GeolocationResponse {
 	public void setLongitude(long longitude) {
 		this.longitude = longitude;
 	}
+
+	public long getDate() {
+		return date;
+	}
+
+	public void setDate(long date) {
+		this.date = date;
+	}	
 }
