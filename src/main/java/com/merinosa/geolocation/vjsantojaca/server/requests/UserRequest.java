@@ -24,6 +24,9 @@ public class UserRequest {
 	
 	@NotNull
 	private long imei;
+	
+	@NotNull
+	private int idGroup;
 
 	public String getName() {
 		return name;
@@ -72,4 +75,12 @@ public class UserRequest {
 	public void setImei(long imei) {
 		this.imei = imei;
 	}
+
+	public int getIdGroup() {
+		return idGroup;
+	}
+
+	public void setIdGroup(int idGroup) {
+		this.idGroup = idGroup;
+	}	
 }
