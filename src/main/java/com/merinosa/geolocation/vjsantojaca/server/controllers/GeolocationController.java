@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.merinosa.geolocation.vjsantojaca.server.responses.GeolocationResponses;
+import com.merinosa.geolocation.vjsantojaca.server.responses.GeolocationResponse;
 
 /*
  * Controlador para las peticiones REST de Geolocalización
@@ -18,7 +18,7 @@ import com.merinosa.geolocation.vjsantojaca.server.responses.GeolocationResponse
 public class GeolocationController {
 
 	@RequestMapping(method= RequestMethod.POST)
-	public boolean geolocation ( @RequestBody @Valid GeolocationResponses geolocation ) {
+	public boolean geolocation ( @RequestBody @Valid GeolocationResponse geolocation ) {
 		
 		return true;
 	}
