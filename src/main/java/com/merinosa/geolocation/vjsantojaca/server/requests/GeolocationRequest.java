@@ -5,9 +5,6 @@ import javax.validation.constraints.NotNull;
 public class GeolocationRequest {
 	
 	@NotNull
-	private int id;
-	
-	@NotNull
 	private long latitude;
 	
 	@NotNull
@@ -15,14 +12,9 @@ public class GeolocationRequest {
 	
 	@NotNull
 	private long date;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	
+	@NotNull
+	private int user;
 
 	public long getLatitude() {
 		return latitude;
@@ -46,5 +38,13 @@ public class GeolocationRequest {
 
 	public void setDate(long date) {
 		this.date = date;
-	}	
+	}
+
+	public int getUser() {
+		return user;
+	}
+
+	public void setUser(int user) {
+		this.user = user;
+	}
 }
