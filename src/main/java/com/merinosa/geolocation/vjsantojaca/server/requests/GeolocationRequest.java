@@ -2,7 +2,7 @@ package com.merinosa.geolocation.vjsantojaca.server.requests;
 
 import javax.validation.constraints.NotNull;
 
-public class GeolocationResquest {
+public class GeolocationRequest {
 	
 	@NotNull
 	private int id;
