@@ -22,5 +22,4 @@ public class GeolocationController {
 		
 		return true;
 	}
-	
 }

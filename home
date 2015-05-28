@@ -1,0 +1,3 @@
+M	build.gradle
+M	src/main/java/com/merinosa/geolocation/vjsantojaca/server/controllers/GeolocationController.java
+M	src/main/java/com/merinosa/geolocation/vjsantojaca/server/models/entities/GroupEntity.java
