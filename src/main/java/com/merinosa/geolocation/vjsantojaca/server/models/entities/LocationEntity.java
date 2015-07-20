@@ -1,0 +1,78 @@
+package com.merinosa.geolocation.vjsantojaca.server.models.entities;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Location")
+public class LocationEntity implements Serializable {
+
+	private static final long serialVersionUID = -7353668217759089384L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="idLocation")
+	private int idLocation;
+	
+	@Column(name="idUser")
+	private String idUser;
+	
+	@Column(name="latitude")
+	private float latitude;
+	
+	@Column(name="longitude")
+	private float longitude;
+	
+	@Column(name="date")
+	private long date;
+
+	public LocationEntity() {
+		super();
+	}
+
+	public int getIdLocation() {
+		return idLocation;
+	}
+
+	public void setIdLocation(int idLocation) {
+		this.idLocation = idLocation;
+	}
+
+	public String getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
+	}
+
+	public float getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
+	}
+
+	public float getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
+	}
+
+	public long getDate() {
+		return date;
+	}
+
+	public void setDate(long date) {
+		this.date = date;
+	}
+}
