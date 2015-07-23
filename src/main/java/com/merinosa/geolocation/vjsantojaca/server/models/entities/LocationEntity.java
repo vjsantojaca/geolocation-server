@@ -30,7 +30,18 @@ public class LocationEntity implements Serializable {
 	private float longitude;
 	
 	@Column(name="date")
-	private long date;
+	private long date;	
+	
+	@Column(name="battery")
+	private float battery;
+	
+	public float getBattery() {
+		return battery;
+	}
+
+	public void setBattery(float battery) {
+		this.battery = battery;
+	}
 
 	public LocationEntity() {
 		super();

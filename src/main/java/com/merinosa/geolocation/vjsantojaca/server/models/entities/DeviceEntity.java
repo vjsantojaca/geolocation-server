@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.json.JSONObject;
+
 @Entity
 @Table(name="Device")
 public class DeviceEntity implements Serializable {
@@ -30,13 +32,50 @@ public class DeviceEntity implements Serializable {
 	private String nickDevice;
 	
 	@Column(name="numberDevice")
-	private String numberDevice;
+	private int numberDevice;
+	
+	@Column(name="typeDevice")
+	private String typeDevice;
 	
 	@Column(name="gcm")
 	private String gcm;
+	
+	@Column(name="appList")
+	private String appList;
+	
+	@Column(name="pass")
+	private String pass;
 
 	public DeviceEntity() {
 		super();
+	}
+	
+	public DeviceEntity(JSONObject object) {
+		if( object.has("nameDevice") )
+			this.nameDevice = object.getString("nameDevice");
+		else 
+			this.nameDevice = "";
+		
+		if( object.has("emailDevice") )
+			this.emailDevice = object.getString("emailDevice");
+		else 
+			this.emailDevice = "";
+		
+		if( object.has("nickDevice") )
+			this.nickDevice = object.getString("nickDevice");
+		else 
+			this.nickDevice = "";
+		
+		if( object.has("numberDevice") )
+			this.numberDevice = object.getInt("numberDevice");
+		
+		if( object.has("pass") )
+			this.pass = object.getString("pass");
+		else 
+			this.pass = "";
+		
+		this.gcm = "";
+		this.appList = "";
 	}
 
 	public int getIdDevice() {
@@ -71,11 +110,11 @@ public class DeviceEntity implements Serializable {
 		this.nickDevice = nickDevice;
 	}
 
-	public String getNumberDevice() {
+	public int getNumberDevice() {
 		return numberDevice;
 	}
 
-	public void setNumberDevice(String numberDevice) {
+	public void setNumberDevice(int numberDevice) {
 		this.numberDevice = numberDevice;
 	}
 
@@ -85,5 +124,29 @@ public class DeviceEntity implements Serializable {
 
 	public void setGcm(String gcm) {
 		this.gcm = gcm;
+	}
+
+	public String getTypeDevice() {
+		return typeDevice;
+	}
+
+	public void setTypeDevice(String typeDevice) {
+		this.typeDevice = typeDevice;
+	}
+
+	public String getAppList() {
+		return appList;
+	}
+
+	public void setAppList(String appList) {
+		this.appList = appList;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 }

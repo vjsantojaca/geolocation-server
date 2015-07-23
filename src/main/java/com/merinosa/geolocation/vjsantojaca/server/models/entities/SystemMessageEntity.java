@@ -32,6 +32,17 @@ public class SystemMessageEntity implements Serializable
 	
 	@Column(name="typeMessage")
 	private TypeMessage typeMessage;
+	
+	@Column(name="battery")
+	private float battery;
+	
+	public float getBattery() {
+		return battery;
+	}
+
+	public void setBattery(float battery) {
+		this.battery = battery;
+	}
 
 	public SystemMessageEntity() {
 		super();
