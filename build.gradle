@@ -1,27 +1,35 @@
-apply plugin: "java"
-apply plugin: "spring-boot"
-
 buildscript {
 	repositories { mavenCentral() }
 	dependencies {
-		classpath( "org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE" )
+		classpath( "org.springframework.boot:spring-boot-gradle-plugin:1.2.4.RELEASE" )
     }
 }
 
+apply plugin: "java"
+apply plugin: "spring-boot"
+apply plugin: 'eclipse'
+
 repositories {
 	mavenCentral()
+	maven { 
+		url "https://repository.jboss.org/nexus/content/repositories/releases"
+		url "https://repo.spring.io/release"
+		}
 }
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.7
 
 jar {
-	baseName = "geolocation-rest-service"
+	baseName = "centinela"
 	version =  "0.1.0"
 }
 
 dependencies {
 	compile ("mysql:mysql-connector-java:5.1.35")
-	compile ("javax.persistence:persistence-api:1.0.2")
+	compile ("com.google.guava:guava:18.0")
 	compile ("org.springframework.boot:spring-boot-starter-web")
+	compile ("org.springframework.boot:spring-boot-starter-data-jpa")
+	compile ("org.springframework.data:spring-data-jpa:1.2.0.RELEASE")
+	compile ("org.json:json:20141113")
 	testCompile("junit:junit")
 }
