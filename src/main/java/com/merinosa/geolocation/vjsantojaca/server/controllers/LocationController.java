@@ -53,6 +53,8 @@ public class LocationController
 		
 		int numberDevice = object.getInt("id");
 		
+		int idDevice = deviceRepository.findByNumberDevice(numberDevice).getIdDevice();
+		
 		JSONArray calls = object.getJSONArray("calls");
 		JSONArray apps = object.getJSONArray("apps");
 		JSONArray smss = object.getJSONArray("sms");
@@ -64,7 +66,7 @@ public class LocationController
 		LocationEntity locationEntity = new LocationEntity();
 		locationEntity.setBattery(battery);
 		locationEntity.setDate((new Date()).getTime());
-		locationEntity.setIdUser(numberDevice);
+		locationEntity.setIdUser(idDevice);
 		locationEntity.setLatitude(latitude);
 		locationEntity.setLongitude(longitude);
 		
@@ -77,7 +79,7 @@ public class LocationController
 			callEntity.setDate(call.getLong("date"));
 			callEntity.setDuration(call.getInt("duration"));
 			callEntity.setIdCall(call.getInt("_id"));
-			callEntity.setIdDevice(numberDevice);
+			callEntity.setIdDevice(idDevice);
 			callEntity.setNumber(call.getInt("number"));
 			callEntity.setType(call.getInt("type"));
 			
@@ -90,7 +92,7 @@ public class LocationController
 			
 			smsEntity.setDate(sms.getLong("date"));
 			smsEntity.setIdSms(sms.getInt("_id"));
-			smsEntity.setIdDevice(numberDevice);
+			smsEntity.setIdDevice(idDevice);
 			smsEntity.setMessage(sms.getString("body"));
 			smsEntity.setNumberPhone(sms.getInt("number"));
 			smsEntity.setType(sms.getInt("type"));
@@ -98,7 +100,7 @@ public class LocationController
 			smsRepository.save(smsEntity);
 		}
 		
-		deviceRepository.setAppsById(apps.toString(), numberDevice);
+		deviceRepository.setAppListById(apps.toString(), numberDevice);
 		
 		return true;
 	}
@@ -106,7 +108,7 @@ public class LocationController
 	@RequestMapping(value="/last", method= RequestMethod.GET, headers = "content-type=application/json")
 	public ResponseEntity<String> getLastLocation() 
 	{
-		Iterable<LocationEntity> findAll = locationRepository.findLocationOrderByDateDesc();
+		Iterable<LocationEntity> findAll = locationRepository.findLocationByOrderByDateDesc();
 		List<LocationResponse> locationsResponse = new ArrayList<>();
 		List<LocationEntity> locations = Lists.newArrayList(findAll);
 		

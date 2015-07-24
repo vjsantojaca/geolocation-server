@@ -195,9 +195,4 @@ public class DeviceController
 		}
 		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 	}
-	
-//	@RequestMapping(value="/gcm/send", method= RequestMethod.POST, headers = "content-type=application/json")
-//	public Response sendGcm (@RequestBody String request) {
-//		
-//	}
 }
