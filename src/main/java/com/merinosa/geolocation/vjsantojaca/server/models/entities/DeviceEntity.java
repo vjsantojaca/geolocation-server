@@ -10,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.json.JSONObject;
+import org.springframework.context.annotation.ComponentScan;
 
+@ComponentScan
 @Entity
 @Table(name="Device")
 public class DeviceEntity implements Serializable {
@@ -47,7 +49,6 @@ public class DeviceEntity implements Serializable {
 	private String pass;
 
 	public DeviceEntity() {
-		super();
 	}
 	
 	public DeviceEntity(JSONObject object) {

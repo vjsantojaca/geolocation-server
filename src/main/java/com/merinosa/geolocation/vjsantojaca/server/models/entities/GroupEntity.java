@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.ComponentScan;
+
+@ComponentScan
 @Entity
 @Table(name="Group")
 public class GroupEntity implements Serializable {
