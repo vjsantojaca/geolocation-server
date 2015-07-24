@@ -3,6 +3,7 @@ package com.merinosa.geolocation.vjsantojaca.server.responses;
 import java.util.List;
 
 import com.merinosa.geolocation.vjsantojaca.server.models.entities.CallEntity;
+import com.merinosa.geolocation.vjsantojaca.server.models.entities.DeviceEntity;
 import com.merinosa.geolocation.vjsantojaca.server.models.entities.LocationEntity;
 import com.merinosa.geolocation.vjsantojaca.server.models.entities.SMSEntity;
 
@@ -20,6 +21,20 @@ public class DeviceResponse
 	private List<LocationEntity> locations;
 	private List<SMSEntity> sms;
 	private List<CallEntity> calls;
+	
+	public DeviceResponse(){
+	}
+	
+	public DeviceResponse(DeviceEntity device){
+		this.idDevice = device.getIdDevice();
+		this.nameDevice = device.getNameDevice();
+		this.emailDevice = device.getEmailDevice();
+		this.nickDevice = device.getNickDevice();
+		this.numberDevice = device.getNumberDevice();
+		this.typeDevice = device.getTypeDevice();
+		this.appList = device.getAppList();
+		this.pass = device.getPass();
+	}
 	
 	public int getIdDevice() {
 		return idDevice;
