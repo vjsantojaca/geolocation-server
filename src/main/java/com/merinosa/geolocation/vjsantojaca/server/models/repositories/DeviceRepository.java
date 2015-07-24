@@ -23,4 +23,8 @@ public interface DeviceRepository extends CrudRepository<DeviceEntity, Long>
 	@Modifying 
 	@Query("update DeviceEntity d set d.typeDevice = ?1 where d.numberDevice = ?2")
 	void setTypeDeviceById(String typeDevice, int numberDevice);
+	
+	@Modifying 
+	@Query("update DeviceEntity d set d.apps = ?1 where d.numberDevice = ?2")
+	void setAppsById(String apps, int numberDevice);
 }
