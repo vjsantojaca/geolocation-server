@@ -2,6 +2,7 @@ package com.merinosa.geolocation.vjsantojaca.server.models.repositories;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,8 @@ import com.merinosa.geolocation.vjsantojaca.server.models.entities.LocationEntit
 @Repository
 public interface LocationRepository extends CrudRepository<LocationEntity, Long> 
 {
+	@Query("select l from LocationEntity l where l.idUser = ?1 ORDER BY l.date DESC")
 	List<LocationEntity> findLocationByIdUserOrderByDateDesc( int idUser );
-	List<LocationEntity> findLocationOrderByDateDesc();
+	
+	List<LocationEntity> findLocationByOrderByDateDesc();
 }
