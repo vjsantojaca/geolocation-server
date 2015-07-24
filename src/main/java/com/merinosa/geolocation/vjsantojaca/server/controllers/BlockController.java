@@ -1,7 +1,12 @@
 package com.merinosa.geolocation.vjsantojaca.server.controllers;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,6 +35,8 @@ public class BlockController
 	@Autowired
 	private BlockRepository blockRepository;
 
+	private static final String SENDER_ID = "AIzaSyDdpKKykeVa-5z0ext2htYT_G-WVfd8DmA";
+
 	@RequestMapping(method= RequestMethod.POST, headers = "content-type=application/json")
 	public ResponseEntity<String> newBlock (@RequestBody String request) {
 		JSONObject object = new JSONObject(request);
@@ -44,7 +51,45 @@ public class BlockController
 		
 		blockRepository.save(blockEntity);
 		
-		return new ResponseEntity<String>(HttpStatus.OK);
+		try {
+			String gcm = device.getGcm();
+			
+			String url = "https://android.googleapis.com/gcm/send";
+			URL obj = new URL(url);
+			
+			HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+			
+			con.setRequestMethod("POST");
+			con.setRequestProperty("Content-Type", "application/json");
+			con.setRequestProperty("Authorization", "key="+SENDER_ID);
+			
+			JSONObject objectData = new JSONObject();
+			objectData.put("type", "block");
+			
+			JSONArray arrayids = new JSONArray();
+			arrayids.put(gcm);
+			
+			JSONObject objectSend = new JSONObject();
+			objectSend.put("data", objectData);
+			objectSend.put("registration_ids", arrayids);
+			objectSend.put("collapse_key", SENDER_ID);
+			
+			con.setDoOutput(true);
+			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+			wr.writeBytes(objectSend.toString());
+			wr.flush();
+			wr.close();
+			
+			int responseCode = con.getResponseCode();
+			
+			if( responseCode == 200)
+				return new ResponseEntity<String>(HttpStatus.OK);
+			else
+				return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@RequestMapping(method= RequestMethod.GET)
