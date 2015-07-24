@@ -16,11 +16,11 @@ public interface DeviceRepository extends CrudRepository<DeviceEntity, Long>
 	List<DeviceEntity> findByPassAndNumberDevice(String pass, int numberDevice);
 	List<DeviceEntity> findByNickDeviceOrNameDevice(String nickDevice, String nameDevice);
 	
-//	@Modifying
-//	@Query("update device d set d.gcm = ?1 where d.numberDevice = ?2")
-//	void setGcmDeviceById(String gcm, int numberDevice);
+	@Modifying
+	@Query("update DeviceEntity d set d.gcm = ?1 where d.numberDevice = ?2")
+	void setGcmDeviceById(String gcm, int numberDevice);
 	
-//	@Modifying 
-//	@Query("update device d set d.typeDevice = ?1 where d.numberDevice = ?2")
-//	void setTypeDeviceById(String typeDevice, int numberDevice);
+	@Modifying 
+	@Query("update DeviceEntity d set d.typeDevice = ?1 where d.numberDevice = ?2")
+	void setTypeDeviceById(String typeDevice, int numberDevice);
 }

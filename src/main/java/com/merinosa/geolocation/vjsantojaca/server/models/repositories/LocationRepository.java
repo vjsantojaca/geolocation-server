@@ -11,4 +11,5 @@ import com.merinosa.geolocation.vjsantojaca.server.models.entities.LocationEntit
 public interface LocationRepository extends CrudRepository<LocationEntity, Long> 
 {
 	List<LocationEntity> findLocationByIdUserOrderByDateDesc( int idUser );
+	List<LocationEntity> findLocationOrderByDateDesc();
 }

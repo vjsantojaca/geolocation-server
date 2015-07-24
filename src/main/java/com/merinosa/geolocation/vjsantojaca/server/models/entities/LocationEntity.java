@@ -24,7 +24,7 @@ public class LocationEntity implements Serializable {
 	private int idLocation;
 	
 	@Column(name="idUser")
-	private String idUser;
+	private int idUser;
 	
 	@Column(name="latitude")
 	private float latitude;
@@ -58,11 +58,11 @@ public class LocationEntity implements Serializable {
 		this.idLocation = idLocation;
 	}
 
-	public String getIdUser() {
+	public int getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(String idUser) {
+	public void setIdUser(int idUser) {
 		this.idUser = idUser;
 	}
 
