@@ -23,6 +23,7 @@ public class DeviceResponse
 	private List<SMSEntity> sms;
 	private List<CallEntity> calls;
 	private List<SystemMessageEntity> messages;
+	private String passBlock;
 	
 	public DeviceResponse(){
 	}
@@ -117,5 +118,13 @@ public class DeviceResponse
 
 	public void setMessages(List<SystemMessageEntity> messages) {
 		this.messages = messages;
+	}
+	
+	public String getPassBlock() {
+		return passBlock;
+	}
+
+	public void setPassBlock(String passBlock) {
+		this.passBlock = passBlock;
 	}
 }
