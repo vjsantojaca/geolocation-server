@@ -6,6 +6,7 @@ import com.merinosa.geolocation.vjsantojaca.server.models.entities.CallEntity;
 import com.merinosa.geolocation.vjsantojaca.server.models.entities.DeviceEntity;
 import com.merinosa.geolocation.vjsantojaca.server.models.entities.LocationEntity;
 import com.merinosa.geolocation.vjsantojaca.server.models.entities.SMSEntity;
+import com.merinosa.geolocation.vjsantojaca.server.models.entities.SystemMessageEntity;
 
 public class DeviceResponse 
 {
@@ -21,6 +22,7 @@ public class DeviceResponse
 	private List<LocationEntity> locations;
 	private List<SMSEntity> sms;
 	private List<CallEntity> calls;
+	private List<SystemMessageEntity> messages;
 	
 	public DeviceResponse(){
 	}
@@ -107,5 +109,13 @@ public class DeviceResponse
 	}
 	public void setCalls(List<CallEntity> calls) {
 		this.calls = calls;
-	}	
+	}
+
+	public List<SystemMessageEntity> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<SystemMessageEntity> messages) {
+		this.messages = messages;
+	}
 }
