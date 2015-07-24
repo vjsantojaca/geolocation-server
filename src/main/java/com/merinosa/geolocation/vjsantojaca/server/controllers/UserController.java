@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value="/api/user")
 public class UserController 
 {
-	@RequestMapping(method= RequestMethod.POST, headers = "content-type=application/json")
+	@RequestMapping(value="/login", method= RequestMethod.POST, headers = "content-type=application/json")
 	public boolean login ( @RequestBody String request ) 
 	{
 		
 		return true;
 	}
 	
-	@RequestMapping(method= RequestMethod.POST, headers = "content-type=application/json")
+	@RequestMapping(value="/admin",method= RequestMethod.POST, headers = "content-type=application/json")
 	public boolean isAdmin ( @RequestBody String request ) 
 	{
 		

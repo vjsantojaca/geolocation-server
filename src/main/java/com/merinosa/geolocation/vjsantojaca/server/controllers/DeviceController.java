@@ -17,6 +17,7 @@ import com.google.common.collect.Lists;
 import com.merinosa.geolocation.vjsantojaca.server.models.entities.DeviceEntity;
 import com.merinosa.geolocation.vjsantojaca.server.models.repositories.DeviceRepository;
 import com.merinosa.geolocation.vjsantojaca.server.models.repositories.LocationRepository;
+import com.merinosa.geolocation.vjsantojaca.server.responses.DeviceResponse;
 
 @RestController
 @RequestMapping(value="/api/device")
@@ -41,17 +42,23 @@ public class DeviceController
 	@RequestMapping(method= RequestMethod.GET)
 	public ResponseEntity<String> getDevice (@RequestParam(value="id", required=true, defaultValue="0") int id) {
 		DeviceEntity findOne = deviceRepository.findOne((long) id);
-		if( findOne != null ) 
-			return new ResponseEntity<String>((new JSONObject(findOne)).toString(), HttpStatus.OK);
+		if( findOne != null ) {
+			DeviceResponse device = new DeviceResponse(findOne);
+			device.setLocations(locationRepository.findLocationByIdUserOrderByDateDesc(device.getIdDevice()));
+			return new ResponseEntity<String>((new JSONObject(device)).toString(), HttpStatus.OK);
+		}
 		else {
 			 findOne = deviceRepository.findByNumberDevice(id);
-			 if ( findOne != null )
-				 return new ResponseEntity<String>((new JSONObject(findOne)).toString(), HttpStatus.OK);
+			 if ( findOne != null ) {
+				 DeviceResponse device = new DeviceResponse(findOne);
+				 device.setLocations(locationRepository.findLocationByIdUserOrderByDateDesc(device.getIdDevice()));
+				 return new ResponseEntity<String>((new JSONObject(device)).toString(), HttpStatus.OK);
+			 }
 		}
 		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 	}
 	
-	@RequestMapping(method= RequestMethod.GET)
+	@RequestMapping(value="/number",method= RequestMethod.GET)
 	public ResponseEntity<String> getDeviceByNumber (@RequestParam(value="number", required=true, defaultValue="0") int number) {
 		DeviceEntity findByNumber = deviceRepository.findByNumberDevice(number);
 		if( findByNumber != null ) 
@@ -60,11 +67,11 @@ public class DeviceController
 		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 	}
 	
-	@RequestMapping(method= RequestMethod.GET)
+	@RequestMapping(value="/name", method= RequestMethod.GET)
 	public ResponseEntity<String> getDevicesByName (@RequestParam(value="name", required=true, defaultValue="") String name) {
-		DeviceEntity findByNumber = deviceRepository.findByNickDeviceOrNameDevice(name, name);
-		if( findByNumber != null ) 
-			return new ResponseEntity<String>((new JSONObject(findByNumber)).toString(), HttpStatus.OK);
+		List<DeviceEntity> findByNumber = deviceRepository.findByNickDeviceOrNameDevice(name, name);
+		if( findByNumber != null && findByNumber.size() != 0 ) 
+			return new ResponseEntity<String>((new JSONArray(findByNumber)).toString(), HttpStatus.OK);
 		
 		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 	}
@@ -86,10 +93,10 @@ public class DeviceController
 		String pass = object.getString("pass");
 		int number = object.getInt("id");
 		
-		DeviceEntity device = deviceRepository.findByPassAndNumberDevice(pass, number);
-		if( device != null ) 
+		List<DeviceEntity> devices = deviceRepository.findByPassAndNumberDevice(pass, number);
+		if( devices != null  && devices.size() != 0 ) 
 		{
-			deviceRepository.setGcmDeviceById(object.getString("model"), number);
+//			deviceRepository.setGcmDeviceById(object.getString("model"), number);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
@@ -104,7 +111,7 @@ public class DeviceController
 		DeviceEntity device = deviceRepository.findByNumberDevice(number);
 		if( device != null ) 
 		{
-			deviceRepository.setGcmDeviceById(regId, number);
+//			deviceRepository.setGcmDeviceById(regId, number);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
