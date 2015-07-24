@@ -27,25 +27,11 @@ public class SystemMessageEntity implements Serializable
 	@Column(name="idDevice")
 	private int idDevice;
 	
-	@Column(name="message")
-	private int message;
-	
 	@Column(name="date")
 	private long date;
 	
 	@Column(name="typeMessage")
 	private TypeMessage typeMessage;
-	
-	@Column(name="battery")
-	private float battery;
-	
-	public float getBattery() {
-		return battery;
-	}
-
-	public void setBattery(float battery) {
-		this.battery = battery;
-	}
 
 	public SystemMessageEntity() {
 		super();
@@ -65,14 +51,6 @@ public class SystemMessageEntity implements Serializable
 
 	public void setIdDevice(int idDevice) {
 		this.idDevice = idDevice;
-	}
-
-	public int getMessage() {
-		return message;
-	}
-
-	public void setMessage(int message) {
-		this.message = message;
 	}
 
 	public long getDate() {
