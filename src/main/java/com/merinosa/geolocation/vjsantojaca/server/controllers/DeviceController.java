@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +103,6 @@ public class DeviceController
 				sf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 				
 				try {
-					Logger.getLogger(DeviceController.class.getName()).log(Level.INFO, "Fecha: " + sf.parse(dateBefore).getTime());
 					device.setLocations(locationRepository.findLocationByIdUserAndDateOrderByDateAsc(device.getIdDevice(), sf.parse(dateBefore).getTime(), (sf.parse(dateBefore).getTime() + 86400000)));
 				} catch (ParseException e) {
 					e.printStackTrace();
@@ -171,7 +168,7 @@ public class DeviceController
 	
 	@RequestMapping(value="/name", method= RequestMethod.GET)
 	public ResponseEntity<String> getDevicesByName (@RequestParam(value="name", required=true, defaultValue="") String name) {
-		List<DeviceEntity> findByName = deviceRepository.findByNickDeviceOrNameDevice(name, name);
+		List<DeviceEntity> findByName = deviceRepository.findByNickDeviceOrNameDeviceorEmailDevice(name, name, name);
 		if( findByName != null && findByName.size() != 0 ) {
 			List<DeviceResponse> devices = new ArrayList<>();
 			for( DeviceEntity dev : findByName ) {
@@ -252,6 +249,12 @@ public class DeviceController
 		if( devices != null && devices.size() != 0 ) 
 		{
 			deviceRepository.setTypeDeviceById(object.getString("model"), number);
+			if( object.has("email") ) {
+				DeviceEntity device = devices.get(0);
+				if( device.getEmailDevice() != null && device.getEmailDevice().equals("")) {
+					deviceRepository.setEmailDeviceById(object.getString("email"), number);
+				}
+			}
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
