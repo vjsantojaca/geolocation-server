@@ -25,7 +25,7 @@ public class FileEntity implements Serializable
 	private int idFile;
 	
 	@Column(name="idUser")
-	private int idUser;
+	private int idDevice;
 	
 	@Column(name="path")
 	private String path;
@@ -45,11 +45,11 @@ public class FileEntity implements Serializable
 	}
 
 	public int getIdUser() {
-		return idUser;
+		return idDevice;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setIdUser(int idDevice) {
+		this.idDevice = idDevice;
 	}
 
 	public String getPath() {

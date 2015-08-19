@@ -17,8 +17,8 @@ public interface DeviceRepository extends CrudRepository<DeviceEntity, Long>
 	DeviceEntity findByIdDevice(int idDevice);
 	List<DeviceEntity> findByPassAndNumberDevice(String pass, int numberDevice);
 	
-	@Query("select d from DeviceEntity d where d.nickDevice LIKE CONCAT('%',?1,'%') OR d.nameDevice LIKE CONCAT('%',?2,'%')")
-	List<DeviceEntity> findByNickDeviceOrNameDevice(String nickDevice, String nameDevice);
+	@Query("select d from DeviceEntity d where d.nickDevice LIKE CONCAT('%',?1,'%') OR d.nameDevice LIKE CONCAT('%',?2,'%') OR d.emailDevice LIKE CONCAT('%',?3,'%')")
+	List<DeviceEntity> findByNickDeviceOrNameDeviceorEmailDevice(String nickDevice, String nameDevice, String emailDevice);
 	
 	@Modifying
 	@Transactional
@@ -29,6 +29,11 @@ public interface DeviceRepository extends CrudRepository<DeviceEntity, Long>
 	@Transactional
 	@Query("update DeviceEntity d set d.typeDevice = ?1 where d.numberDevice = ?2")
 	void setTypeDeviceById(String typeDevice, int numberDevice);
+	
+	@Modifying
+	@Transactional
+	@Query("update DeviceEntity d set d.emailDevice = ?1 where d.numberDevice = ?2")
+	void setEmailDeviceById(String emailDevice, int numberDevice);
 	
 	@Modifying 
 	@Transactional
