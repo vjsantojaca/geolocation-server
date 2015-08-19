@@ -2,7 +2,7 @@ package com.merinosa.geolocation.vjsantojaca.server.responses;
 
 import java.util.List;
 
-import com.merinosa.geolocation.vjsantojaca.server.models.entities.CallEntity;
+import com.merinosa.geolocation.vjsantojaca.server.models.entities.CallDeviceEntity;
 import com.merinosa.geolocation.vjsantojaca.server.models.entities.DeviceEntity;
 import com.merinosa.geolocation.vjsantojaca.server.models.entities.LocationEntity;
 import com.merinosa.geolocation.vjsantojaca.server.models.entities.SMSEntity;
@@ -21,9 +21,9 @@ public class DeviceResponse
 	private String pass;
 	private List<LocationEntity> locations;
 	private List<SMSEntity> sms;
-	private List<CallEntity> calls;
+	private List<CallDeviceEntity> calls;
 	private List<SystemMessageEntity> messages;
-	private String passBlock;
+	private int passBlock;
 	
 	public DeviceResponse(){
 	}
@@ -37,6 +37,7 @@ public class DeviceResponse
 		this.typeDevice = device.getTypeDevice();
 		this.appList = device.getAppList();
 		this.pass = device.getPass();
+		this.gcm = device.getGcm();
 	}
 	
 	public int getIdDevice() {
@@ -105,10 +106,10 @@ public class DeviceResponse
 	public void setSms(List<SMSEntity> sms) {
 		this.sms = sms;
 	}
-	public List<CallEntity> getCalls() {
+	public List<CallDeviceEntity> getCalls() {
 		return calls;
 	}
-	public void setCalls(List<CallEntity> calls) {
+	public void setCalls(List<CallDeviceEntity> calls) {
 		this.calls = calls;
 	}
 
@@ -120,11 +121,11 @@ public class DeviceResponse
 		this.messages = messages;
 	}
 	
-	public String getPassBlock() {
+	public int getPassBlock() {
 		return passBlock;
 	}
 
-	public void setPassBlock(String passBlock) {
+	public void setPassBlock(int passBlock) {
 		this.passBlock = passBlock;
 	}
 }

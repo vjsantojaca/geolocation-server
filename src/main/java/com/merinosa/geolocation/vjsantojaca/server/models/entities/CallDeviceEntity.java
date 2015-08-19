@@ -10,13 +10,13 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.ComponentScan;
 
-import com.merinosa.geolocation.vjsantojaca.server.models.entities.CallEntity.CallPK;
+import com.merinosa.geolocation.vjsantojaca.server.models.entities.CallDeviceEntity.CallDevicePK;
 
 @ComponentScan
 @Entity
-@Table(name="Call")
-@IdClass(CallPK.class)
-public class CallEntity implements Serializable 
+@Table(name="CallDevice")
+@IdClass(CallDevicePK.class)
+public class CallDeviceEntity implements Serializable 
 {
 	private static final long serialVersionUID = 767117523030997109L;
 	
@@ -33,7 +33,7 @@ public class CallEntity implements Serializable
 	private long date;
 	
 	@Column(name="number")
-	private int number;
+	private String number;
 	
 	@Column(name="duration")
 	private int duration;
@@ -41,10 +41,11 @@ public class CallEntity implements Serializable
 	@Column(name="type")
 	private int type;
 
-	public CallEntity() {
-	
-	}
 
+	public CallDeviceEntity() {
+		super();
+	}
+	
 	public int getIdCall() {
 		return idCall;
 	}
@@ -69,11 +70,11 @@ public class CallEntity implements Serializable
 		this.date = date;
 	}
 
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
@@ -93,7 +94,7 @@ public class CallEntity implements Serializable
 		this.type = type;
 	}
 	
-	public class CallPK implements Serializable 
+	public static class CallDevicePK implements Serializable 
 	{
 		private static final long serialVersionUID = 9185140255622399681L;
 		
@@ -101,9 +102,9 @@ public class CallEntity implements Serializable
 	    protected Integer idDevice;
 	    protected Long date;
 	 
-	    public CallPK() {} 
+	    public CallDevicePK() {} 
 	 
-	    public CallPK(Integer idCall, Integer idDevice, Long date) {
+	    public CallDevicePK(Integer idCall, Integer idDevice, Long date) {
 	        this.idCall = idCall;
 	        this.idDevice = idDevice;
 	        this.date = date;

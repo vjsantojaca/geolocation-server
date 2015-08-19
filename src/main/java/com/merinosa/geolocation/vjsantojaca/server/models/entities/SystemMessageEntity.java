@@ -32,6 +32,9 @@ public class SystemMessageEntity implements Serializable
 	
 	@Column(name="typeMessage")
 	private TypeMessage typeMessage;
+	
+	@Column(name="readSM")
+	private Boolean read;
 
 	public SystemMessageEntity() {
 		super();
@@ -67,5 +70,13 @@ public class SystemMessageEntity implements Serializable
 
 	public void setTypeMessage(TypeMessage typeMessage) {
 		this.typeMessage = typeMessage;
+	}
+
+	public Boolean getRead() {
+		return read;
+	}
+
+	public void setRead(Boolean read) {
+		this.read = read;
 	}
 }

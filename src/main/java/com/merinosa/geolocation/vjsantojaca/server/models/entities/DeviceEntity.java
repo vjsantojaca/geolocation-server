@@ -75,6 +75,7 @@ public class DeviceEntity implements Serializable {
 		else 
 			this.pass = "";
 		
+		this.typeDevice = "";
 		this.gcm = "";
 		this.appList = "";
 	}

@@ -20,7 +20,7 @@ import com.merinosa.geolocation.vjsantojaca.server.models.entities.DeviceEntity;
 import com.merinosa.geolocation.vjsantojaca.server.models.repositories.DeviceRepository;
 
 @RestController
-@RequestMapping(value="/api/gcm")
+@RequestMapping(value="/centinela/api/gcm")
 public class GCMController {
 
 	@Autowired

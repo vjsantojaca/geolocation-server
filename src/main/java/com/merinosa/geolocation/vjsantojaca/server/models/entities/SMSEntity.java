@@ -33,7 +33,7 @@ public class SMSEntity implements Serializable {
 	private long date;
 	
 	@Column(name="numberPhone")
-	private int numberPhone;
+	private String numberPhone;
 	
 	@Column(name="message")
 	private String message;
@@ -68,11 +68,11 @@ public class SMSEntity implements Serializable {
 		this.date = date;
 	}
 
-	public int getNumberPhone() {
+	public String getNumberPhone() {
 		return numberPhone;
 	}
 
-	public void setNumberPhone(int numberPhone) {
+	public void setNumberPhone(String numberPhone) {
 		this.numberPhone = numberPhone;
 	}
 
@@ -92,7 +92,7 @@ public class SMSEntity implements Serializable {
 		this.type = type;
 	}
 	
-	public class SMSPK implements Serializable 
+	public static class SMSPK implements Serializable 
 	{
 		private static final long serialVersionUID = 9185140255622399681L;
 		

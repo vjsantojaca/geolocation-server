@@ -7,17 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.ComponentScan;
 
-import com.merinosa.geolocation.vjsantojaca.server.models.entities.BlockEntity.BlockPK;
 
 @ComponentScan
 @Entity
 @Table(name="Block")
-@IdClass(BlockPK.class)
 public class BlockEntity implements Serializable 
 {
 	private static final long serialVersionUID = -5504150158311658177L;
@@ -27,12 +24,11 @@ public class BlockEntity implements Serializable
 	@Column(name="idBlock")
 	private int idBlock;
 	
-	@Id
 	@Column(name="idDevice")
 	private int idDevice;
 	
 	@Column(name="pass")
-	private String pass;
+	private int pass;
 
 	public int getIdBlock() {
 		return idBlock;
@@ -50,27 +46,11 @@ public class BlockEntity implements Serializable
 		this.idDevice = idDevice;
 	}
 
-	public String getPass() {
+	public int getPass() {
 		return pass;
 	}
 
-	public void setPass(String pass) {
+	public void setPass(int pass) {
 		this.pass = pass;
-	}
-	
-	public class BlockPK implements Serializable 
-	{
-		private static final long serialVersionUID = 9185140255622399681L;
-		
-		protected Integer idBlock;
-	    protected Integer idDevice;
-	 
-	    public BlockPK() {} 
-	 
-	    public BlockPK(Integer idBlock, Integer idDevice) {
-	        this.idBlock = idBlock;
-	        this.idDevice = idDevice;
-	    }
-	} 
-	
+	}	
 }

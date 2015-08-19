@@ -1,6 +1,8 @@
 package com.merinosa.geolocation.vjsantojaca.server.controllers;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ import com.merinosa.geolocation.vjsantojaca.server.models.repositories.UserRepos
  */
 
 @RestController
-@RequestMapping(value="/api/user")
+@RequestMapping(value="/centinela/api/user")
 public class UserController 
 {
 	@Autowired
@@ -29,6 +31,7 @@ public class UserController
 	@RequestMapping(value="/login", method= RequestMethod.POST, headers = "content-type=application/json")
 	public ResponseEntity<String> login ( @RequestBody String request ) 
 	{
+		Logger.getLogger(UserController.class.getName()).log(Level.INFO, "Request: " + request);
 		JSONObject object = new JSONObject(request);
 		String pass = object.getString("pass");
 		String nick = object.getString("nick");
@@ -44,6 +47,7 @@ public class UserController
 	@RequestMapping(value="/admin",method= RequestMethod.POST, headers = "content-type=application/json")
 	public ResponseEntity<String> isAdmin ( @RequestBody String request ) 
 	{
+		Logger.getLogger(UserController.class.getName()).log(Level.INFO, "Request: " + request);
 		JSONObject object = new JSONObject(request);
 		String pass = object.getString("pass");
 		String nick = object.getString("nick");
@@ -64,6 +68,7 @@ public class UserController
 	@RequestMapping(value="/newUser", method= RequestMethod.POST, headers = "content-type=application/json")
 	public ResponseEntity<String> newUser ( @RequestBody String request ) 
 	{
+		Logger.getLogger(UserController.class.getName()).log(Level.INFO, "Request: " + request);
 		JSONObject object = new JSONObject(request);
 		String pass = object.getString("pass");
 		String nick = object.getString("nick");

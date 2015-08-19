@@ -8,6 +8,7 @@ buildscript {
 apply plugin: "java"
 apply plugin: "spring-boot"
 apply plugin: 'eclipse'
+apply plugin: 'war'
 
 repositories {
 	mavenCentral()
@@ -24,12 +25,20 @@ jar {
 	version =  "0.1.0"
 }
 
+configurations {
+    providedRuntime
+}
+
 dependencies {
 	compile ("mysql:mysql-connector-java:5.1.35")
 	compile ("com.google.guava:guava:18.0")
 	compile ("org.springframework.boot:spring-boot-starter-web")
 	compile ("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile ("org.springframework.data:spring-data-jpa:1.2.0.RELEASE")
-	compile ("org.json:json:20141113")
+	compile ("org.json:json:20140107")
+	compile ("com.google.code.gson:gson")
+	
+	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+	
 	testCompile("junit:junit")
 }
